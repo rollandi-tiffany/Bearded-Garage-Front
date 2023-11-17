@@ -5,7 +5,7 @@ import Login from './components/Login';
 function App() {
  
   return(
-    <div className=" App">
+    <div className='App'>
       <img 
          src={process.env.PUBLIC_URL + '/images/Pic.jpeg'}  alt="Bearded Garage Logo" className="responsive-img materialboxed"/>
          <Login/>
