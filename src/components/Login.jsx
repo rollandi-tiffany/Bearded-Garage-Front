@@ -1,5 +1,6 @@
 import { useState } from "react";
 //import { Link } from "react"
+import "materialize-css/dist/css/materialize.min.css";
 
 const Login = ({}) =>{
     const [credentials, setCredentials] = useState({username: " ", password: " "});
@@ -12,7 +13,7 @@ const Login = ({}) =>{
         })
         .then((data) => data.json())
         .then((data) => {
-            userLogin(data.token);
+           userLogin(data.token);
         })
         .catch((error) => console.error(error))
     }
@@ -25,21 +26,44 @@ const Login = ({}) =>{
         localStorage.setItem("authToken", token)
         console.log("logged in ")
     }
-    return(
-        <div>
-            <h1>Welcome!</h1>
-            <input type ="text" name="username" placeholder="Enter Username" value={credentials.username} onChange={inputChanged}/>
-            <input type ="password" name="password" placeholder="Enter Password" value={credentials.password} onChange={inputChanged}/>
-            <button onClick={login}>Login</button>
+    return (
+        <div className="row">
+          <div className="col s12 l4 offset-l4">
+            <div className="card">
+              <div className="card-action grey white-text">
+                <h3>Welcome, Please Login</h3>
+              </div>
+              <div className="card-content">
+                <div className="form-field">
+                  <input
+                    type="text"
+                    name="username"
+                    className="validate grey-text text-darken-2"
+                    style={{ backgroundColor: "grey" }}
+                    placeholder="Enter Username"
+                    value={credentials.username}
+                    onChange={inputChanged}
+                  />
+                </div>
+                <div className="form-field">
+                  <input
+                    type="password"
+                    name="password"
+                    className="validate grey-text text-darken-2"
+                    style={{ backgroundColor: "grey" }}
+                    placeholder="Enter Password"
+                    value={credentials.password}
+                    onChange={inputChanged}
+                  />
+                </div>
+              </div>
+              <button className="btn waves-effect grey" type="button" onClick={login}>
+                Login
+              </button>
+            </div>
+          </div>
         </div>
-
-    )
+      );
+    };
     
-    
-
-
-    }
-
-
-
-export default Login
+    export default Login;

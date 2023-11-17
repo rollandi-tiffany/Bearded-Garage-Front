@@ -25,21 +25,57 @@ const Signup = ({}) =>{
         localStorage.setItem("authToken", token)
         console.log("logged in ")
     }
-    return(
-        <div>
-            <h1>Please Signup</h1>
-            <input type ="text" name="fullName" placeholder="Enter Full Name" value={credentials.fullName} onChange={inputChanged}/>
-            <input type ="text" name="username" placeholder="Enter Username" value={credentials.username} onChange={inputChanged}/>
-            <input type ="password" name="password" placeholder="Enter Password" value={credentials.password} onChange={inputChanged}/>
-            <button onClick={signup}>Signup</button>
+    return (
+        <div className="row">
+          <div className="col s12 l4 offset-l4">
+            <div className="card">
+              <div className="card-action grey white-text">
+                <h3>Please Signup</h3>
+              </div>
+              <div className="card-content">
+              <div className="form-field">
+                  <input
+                    type="text"
+                    name="fullName"
+                    className="validate grey-text text-darken-2"
+                    style={{ backgroundColor: "grey" }}
+                    placeholder="Enter Full Name"
+                    value={credentials.fullName}
+                    onChange={inputChanged}
+                  />
+                </div>
+                <div className="form-field">
+                  <input
+                    type="text"
+                    name="username"
+                    className="validate grey-text text-darken-2"
+                    style={{ backgroundColor: "grey" }}
+                    placeholder="Enter Username"
+                    value={credentials.username}
+                    onChange={inputChanged}
+                  />
+                </div>
+                <div className="form-field">
+                  <input
+                    type="password"
+                    name="password"
+                    className="validate grey-text text-darken-2"
+                    style={{ backgroundColor: "grey" }}
+                    placeholder="Enter Password"
+                    value={credentials.password}
+                    onChange={inputChanged}
+                  />
+                </div>
+              </div>
+              <button className="btn waves-effect grey" type="button" onClick={signup}>
+                Signup
+              </button>
+            </div>
+          </div>
         </div>
-
-    )
+      );
+    };
     
-    
-
-
-    }
 
 
 
