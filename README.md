@@ -34,4 +34,4 @@ Users will be able to go to this site () and begin to schedule services for thei
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Wireframes
-![**Project 4 wireframe**](images/capwireframe.jpeg)
+![**Project 4 wireframe**](public/images/capwireframe.jpeg)
