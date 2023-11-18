@@ -11,7 +11,7 @@ import Show from "./pages/Show";
     <Route path = "/" element={<App/>}>
     <Route path="" element={<Index/>} loader={indexLoader}/>
     <Route path="post/:id" element={<Show/>} loader={showLoader}/>
-    <Route path="customers" action={createAction}/>
+    <Route path="vehicle" action={createAction}/>
     <Route path="update/:id" action={updateAction}/>
     <Route path="delete/:id" action={deleteAction}/>
 
