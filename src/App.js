@@ -6,9 +6,9 @@ import axios from 'axios';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
+///axios.defaults.xsrfCookieName = 'csrftoken';
+//axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+//axios.defaults.withCredentials = true;
 
 const consumer= axios.create({
   baseURL: "http://127.0.0.1:8000"
@@ -32,7 +32,7 @@ function App() {
     });
   },[])
 
-  function update_form_btn(){
+  function updateFormBtn(){
     if(signupToggle){
       document.getElementById("form_btn").innerHTML = "Signup";
       setSignupToggle(false);
@@ -67,7 +67,7 @@ function App() {
 
   }
 
-  function submitLogub(e){
+  function submitLogin(e){
     e.preventDefault();
     consumer.post(
       "/customer/login",
@@ -80,17 +80,27 @@ function App() {
     });
   }
 
+  function submitLogout(e){
+    e.preventDefault();
+    consumer.post(
+      "/customer/logout",
+      {withCredentials: true}
+    ).then(function(res){
+      setCurrentUser(false)
+    })
+  }
+
 
  if (currentUser){
   return(
     <div>
       <nav>
         <div className='nav-wrapper'>
-          <a href="#" className='brand-logo'>Bearded Garage Mobile Services</a>
+          <a href="#" className='brand-logo center'>Bearded Garage</a>
           <ul className='right hide-on-med-and-down'>
             <li>
               <form onSubmit={e => submitLogout(e)}>
-                <button type="submit" className='waves-effect waves-light btn'>LOG OUT</button>
+                <button type="submit" className='col s12 btn btn-large waves-effect grey'>LOG OUT</button>
               </form>
             </li>
           </ul>
@@ -105,19 +115,19 @@ function App() {
   return (
     <div className='App'>
       <nav>
-        <div className="nav-wrapper">
-          <a href="#!" className="brand-logo">Bearded Garage</a>
+        <div className="nav-wrapper black">
+          <a href="#!" className="brand-logo center black">Bearded Garage</a>
           <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
           <ul className="right hide-on-med-and-down">
             {currentUser ? (
               <li>
                 <form onSubmit={e => submitLogout(e)}>
-                  <button type="submit" className="btn waves-effect waves-light">Log out</button>
+                  <button type="submit" className='col s12 btn btn-large waves-effect grey'>Log out</button>
                 </form>
               </li>
             ) : (
               <li>
-                <button id="form_btn" onClick={updateFormBtn} className="btn waves-effect waves-light">Signup</button>
+                <button id="form_btn" onClick={updateFormBtn} className='col s12 btn btn-large waves-effect grey'>Signup</button>
               </li>
             )}
           </ul>
@@ -128,12 +138,12 @@ function App() {
         {currentUser ? (
           <li>
             <form onSubmit={e => submitLogout(e)}>
-              <button type="submit" className="btn waves-effect waves-light">Log out</button>
+              <button type="submit" className='col s12 btn btn-large waves-effect grey'>Log out</button>
             </form>
           </li>
         ) : (
           <li>
-            <button id="form_btn" onClick={updateFormBtn} className="btn waves-effect waves-light">Signup</button>
+            <button id="form_btn" onClick={updateFormBtn} className='col s12 btn btn-large waves-effect grey'>Signup</button>
           </li>
         )}
       </ul>
@@ -149,6 +159,7 @@ function App() {
               <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
               <label htmlFor="email">Email address</label>
             </div>
+            
             <div className="input-field">
               <input type="text" id="username" value={username} onChange={e => setUsername(e.target.value)} />
               <label htmlFor="username">Username</label>
@@ -157,7 +168,7 @@ function App() {
               <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
               <label htmlFor="password">Password</label>
             </div>
-            <button type="submit" className="btn waves-effect waves-light">Submit</button>
+            <button type="submit" className='col s12 btn btn-large waves-effect grey'>Signup</button>
           </form>
         </div>
       ) : (
@@ -171,7 +182,7 @@ function App() {
               <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
               <label htmlFor="password">Password</label>
             </div>
-            <button type="submit" className="btn waves-effect waves-light">Submit</button>
+            <button type="submit" className='col s12 btn btn-large waves-effect grey'>Login</button>
           </form>
         </div>
       )}
