@@ -1,9 +1,29 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
+import { useLoaderData, Form } from 'react-router-dom';
+import Post from '../components/Post';
 
-const Index = () => {
+const Index = (props) => {
+  const vehicle = useLoaderData();
+
   return (
-    <div>Index</div>
-  )
-}
+    <>
+      <h2 style={{ color: 'black', backgroundColor: 'grey' }}>
+        We are here to help! Fill out below:
+      </h2>
+      <Form action="/vehicle" method="post">
+        <input type="text" name="make" placeholder="Enter vehicle make" />
+        <input type="text" name="model" placeholder="Enter vehicle model" />
+        <input type="text" name="year" placeholder="Enter vehicle year" />
+        <input type="text" name="services" placeholder="Enter services needed" />
+        <button>Create New Inquiry</button>
+      </Form>
 
-export default Index
+      {vehicle.map((post) => (
+        <Post post={post} key={post.id} />
+      ))}
+    </>
+  );
+};
+
+export default Index;
