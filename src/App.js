@@ -66,6 +66,21 @@ function App() {
     });
 
   }
+
+  function submitLogub(e){
+    e.preventDefault();
+    consumer.post(
+      "/customer/login",
+      {
+        email: email,
+        password: password
+      }
+    ).then(function(res){
+      setCurrentUser(true);
+    });
+  }
+
+
  if (currentUser){
   return(
     <div>
@@ -127,9 +142,9 @@ function App() {
         <img src={process.env.PUBLIC_URL + '/images/Pic.jpeg'} alt="Bearded Garage Logo" className="responsive-img materialboxed" />
       </div>
 
-      {registrationToggle ? (
+      {signupToggle ? (
         <div className="center">
-          <form onSubmit={e => submitRegistration(e)}>
+          <form onSubmit={e => submitSignup(e)}>
             <div className="input-field">
               <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
               <label htmlFor="email">Email address</label>
